@@ -14,6 +14,8 @@ setup(
         ('share/joint_description', ['package.xml']),
         (os.path.join('share', 'joint_description', 'launch'),
          glob('launch/*.launch.py')),
+        (os.path.join('share', 'joint_description', 'urdf'),
+        glob('urdf/*.urdf')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

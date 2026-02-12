@@ -1,0 +1,3 @@
+<robot name="robot">
+  <link name="world"/>
+</robot>
