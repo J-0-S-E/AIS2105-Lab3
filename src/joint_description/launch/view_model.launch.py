@@ -5,7 +5,7 @@ import os
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('joint_description')
-    urdf_path = os.path.join(pkg_share, 'urdf', 'robot.urdf')
+    urdf_path = os.path.join(pkg_share, 'urdf', 'joint_model.urdf')
 
     with open(urdf_path, 'r') as infp:
         robot_description_content = infp.read()
