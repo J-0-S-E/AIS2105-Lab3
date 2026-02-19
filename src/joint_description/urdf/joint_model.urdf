@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="joint_model">
 
-  <!==== LINKS ====>
+  <!-- ==== LINKS ==== -->
   <!-- World -->
   <link name="world"/>
 
@@ -53,7 +53,7 @@
     </visual>
   </link>
 
-  <!==== JOINTS ====>
+  <!-- ==== JOINTS ==== -->
 
   <!-- World til Base -->
   <joint name="base_joint" type="fixed">

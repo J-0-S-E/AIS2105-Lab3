@@ -1,4 +1,5 @@
 from launch import LaunchDescription
+from launch.actions import TimerAction
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import os
@@ -9,6 +10,8 @@ def generate_launch_description():
 
     with open(urdf_path, 'r') as infp:
         robot_description_content = infp.read()
+
+    #robot_description_content = '<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot"><link name="world"/></robot>'
 
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -24,7 +27,19 @@ def generate_launch_description():
         output='screen'
     )
 
+    joint_gui = TimerAction(
+        period=1.0,  # vent 1 sekund for robot_state_publisher
+        actions=[
+            Node(
+                package='joint_state_publisher_gui',
+                executable='joint_state_publisher_gui',
+                name='joint_state_publisher_gui'
+            )
+        ]
+    )
+
     return LaunchDescription([
         node_robot_state_publisher,
-        node_rviz
+        node_rviz,
+        joint_gui
     ])
