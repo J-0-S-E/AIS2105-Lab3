@@ -3,6 +3,11 @@ from launch.actions import TimerAction
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import os
+import xacro
+
+  # Use xacro to process the file
+xacro_file = os.path.join(get_package_share_directory("joint_description"),"urdf","joint_model.urdf")
+robot_description_content = xacro.process_file(xacro_file).toxml()
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('joint_description')
@@ -24,8 +29,11 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        output='screen'
+        output='screen',
+        arguments = ['-d', [os.path.join(get_package_share_directory("joint_description"), 'config', 'config.rviz')]]
     )
+
+
 
     joint_gui = TimerAction(
         period=1.0,  # vent 1 sekund for robot_state_publisher
